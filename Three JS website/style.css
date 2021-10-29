@@ -3,3 +3,10 @@ canvas {
   top: 0;
   left: 0;
 }
+
+main {
+  position: absolute;
+}
+section, h2, p {
+  font-size: 50px;
+}
