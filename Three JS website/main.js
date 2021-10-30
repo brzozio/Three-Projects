@@ -6,7 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 const scene = new THREE.Scene();
 
 // kamera perspektywa, 75 - FOV, window/window - RATIO, 1000 - max dystans renderowania
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
 
 // renderowanie do canvas
   const renderer = new THREE.WebGLRenderer({
@@ -15,16 +15,17 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
  
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.setZ(150); // do lepszej perspektwywy
+  camera.position.setZ(0); // do lepszej perspektwywy
     const cameraPosition = camera.position.z;
 
   renderer.render(scene, camera);
 
 // dodawanie object
-  const geometry = new THREE.TorusGeometry(20,3,16,100);
+  const geometry = new THREE.TorusGeometry(30,3,16,100);
   const material  = new  THREE.MeshStandardMaterial({color: 0xffff99});
   const torus = new THREE.Mesh(geometry,material); // laczenie ze soba figury oraz materialu
     scene.add(torus);
+    torus.position.z = -50;
   
     const pointLight = new THREE.PointLight(0xEA8417);
       pointLight.position.set(20,20,20);
@@ -61,24 +62,22 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 // Moon
   const moonTexture = new THREE.TextureLoader().load('moon.jfif');
   const moon = new THREE.Mesh(
-    new THREE.SphereGeometry(8, 32, 32),
+    new THREE.SphereGeometry(15, 32, 32),
     new THREE.MeshStandardMaterial({
       map: moonTexture,
     })
   );
     scene.add(moon);
-
+    moon.position.z = -50;
 
 
 // ----------------- Scrollowanie tekstu --------------------
-    //moon.position.z = 30;
-    //moon.position.setX(-10);
     function moveCamera(){
       camera.position.z = cameraPosition;
       const temp = document.body.getBoundingClientRect().top;
         moon.rotation.x += 0.02;
         moon.rotation.y += 0.04;
-        moon.rotation.z += 0.02;
+
 
         camera.position.z = -temp * -0.002;
         camera.position.x = -temp * -0.0002;
