@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const scene = new THREE.Scene();
 
-// kamera perspektywa, 75 - FOV, window/window - RATIO, 1000 - dystans
+// kamera perspektywa, 75 - FOV, window/window - RATIO, 1000 - max dystans renderowania
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 // renderowanie do canvas
@@ -15,7 +15,8 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
  
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.setZ(30); // do lepszej perspektwywy
+  camera.position.setZ(150); // do lepszej perspektwywy
+    const cameraPosition = camera.position.z;
 
   renderer.render(scene, camera);
 
@@ -35,7 +36,8 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
       //scene.add(gridHelper);
 
     const controls = new OrbitControls(camera, renderer.domElement); // mozliwosc obracania sie w przestrzenii
-
+  // another light
+    const anotherLight = THREE.ligh
 
   function addStar() {
     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -71,16 +73,16 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 // ----------------- Scrollowanie tekstu --------------------
     //moon.position.z = 30;
     //moon.position.setX(-10);
-
     function moveCamera(){
+      camera.position.z = cameraPosition;
       const temp = document.body.getBoundingClientRect().top;
         moon.rotation.x += 0.02;
         moon.rotation.y += 0.04;
         moon.rotation.z += 0.02;
 
-        camera.position.z = temp * -0.08;
-        camera.position.x = temp * -0.0002;
-        camera.position.y = temp * -0.0002;
+        camera.position.z = -temp * -0.002;
+        camera.position.x = -temp * -0.0002;
+        camera.position.y = -temp * -0.0002;
     }
 
     document.body.onscroll = moveCamera; // odpalanie funckji moveCamera przy kazdym scrollu
@@ -94,6 +96,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
     torus.rotation.x += 0.01;
     torus.rotation.y += 0.01;
 
+    moon.rotation.y += 0.008;
     
     renderer.render(scene,camera);
   }
