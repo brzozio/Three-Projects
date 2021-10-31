@@ -29,7 +29,11 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
   });
 // dodawanie object
   const geometry = new THREE.TorusGeometry(30,3,16,100);
-  const material  = new  THREE.MeshStandardMaterial({color: 0xffff99});
+  const torusNormalMap = new THREE.TextureLoader().load('normal_map_tile.jpg.opdownload');
+  const material  = new  THREE.MeshStandardMaterial({
+    color: 0xffff99,
+    map: torusNormalMap
+  });
   const torus = new THREE.Mesh(geometry,material); // laczenie ze soba figury oraz materialu
     scene.add(torus);
     torus.position.z = -50;
@@ -66,6 +70,19 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
   /*const spaceTexture = new THREE.TextureLoader().load('oad.jpg');
     scene.background = spaceTexture;
   */
+
+// Another sphere
+const sphereNormalMap = new THREE.TextureLoader().load('moon.jfif');
+const anotherSphere = new THREE.Mesh(
+  new THREE.SphereGeometry(3,50,50),
+  new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    map: sphereNormalMap
+  })
+)
+  scene.add(anotherSphere);
+  anotherSphere.position.set(15,-8,-7);
+
 
 // Moon
   const moonTexture = new THREE.TextureLoader().load('moon.jfif');
