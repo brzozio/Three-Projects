@@ -2,6 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+const headerTitle = document.querySelector("#headerMain"); // importowanie glownego naglowka
 
 const scene = new THREE.Scene();
 
@@ -42,7 +43,8 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
     const gridHelper = new THREE.GridHelper(); // linie wysweitlajace siatke, pomagajace w orientacji w przestrzenii
       //scene.add(gridHelper);
 
-    const controls = new OrbitControls(camera, renderer.domElement); // mozliwosc obracania sie w przestrzenii
+    // Orbit controler
+    // const controls = new OrbitControls(camera, renderer.domElement); // mozliwosc obracania sie w przestrzenii
   // another light
     const anotherLight = THREE.ligh
 
@@ -67,10 +69,12 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 
 // Moon
   const moonTexture = new THREE.TextureLoader().load('moon.jfif');
+  const moonMap = new THREE.TextureLoader().load('moonMap.jpg');
   const moon = new THREE.Mesh(
     new THREE.SphereGeometry(15, 32, 32),
     new THREE.MeshStandardMaterial({
       map: moonTexture,
+      map: moonMap
     })
   );
     scene.add(moon);
@@ -81,19 +85,24 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
     function moveCamera(){
       camera.position.z = cameraPosition;
       const temp = document.body.getBoundingClientRect().top;
+        // Rotacja ksiezyca
         moon.rotation.x += 0.02;
         moon.rotation.y += 0.04;
 
+        // Camera pozycja zmiana
+        camera.position.z = temp * -0.002;
+        camera.position.x = temp * -0.0002;
+        camera.position.y = temp * -0.0002;
 
-        camera.position.z = -temp * -0.002;
-        camera.position.x = -temp * -0.0002;
-        camera.position.y = -temp * -0.0002;
+        // Zmiana opacity
+        headerTitle.fromTo({opacity: 1}, {opacity: 1 - 0.05});
+
     }
 
     document.body.onscroll = moveCamera; // odpalanie funckji moveCamera przy kazdym scrollu
 
 
-// ----------------------------------------------------------
+// ----------------- Animacje obiektow -----------------
 
   function animate(){
     requestAnimationFrame(animate);
@@ -106,4 +115,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
     renderer.render(scene,camera);
   }
 
+// -----------------------------------------------------
+  
+  // Odpalanie animacji obiektow
   animate();

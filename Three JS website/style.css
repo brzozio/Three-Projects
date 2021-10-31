@@ -22,6 +22,8 @@ header {
 }
 body {
   scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
 }
 .sectionOne {
   position: relative;
