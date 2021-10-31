@@ -19,7 +19,13 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
     const cameraPosition = camera.position.z;
 
   renderer.render(scene, camera);
-
+// resizing the window
+  window.addEventListener('resize', () => {
+      // Update camera
+        camera.aspect = window.innerWidth / window.innerHeight;
+      // Update renderer
+        renderer.setSize(window.innerWidth, window.innerHeight);
+  });
 // dodawanie object
   const geometry = new THREE.TorusGeometry(30,3,16,100);
   const material  = new  THREE.MeshStandardMaterial({color: 0xffff99});
