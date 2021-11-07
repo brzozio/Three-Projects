@@ -24,28 +24,37 @@ body {
   scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
+  margin: 20px;
+  margin-top: 100vh;
+  color: white;
+  font-size: 3rem;
 }
 .sectionOne {
   position: relative;
   background-color: rgba(255,28,239,0.2);
   height: 20ch;
+  margin-left: 2vw;
+  margin-top: 2vh;
   width: 20ch;
-  font-size: 5rem;
   border-radius: 2rem;
+  padding: 3rem;
 }
 .sectionTwo {
   position: relative;
   background-color:rgba(255,000,000,0.19);
+  margin-left: 60vw;
   height: 45ch;
   width: 20ch;
-  font-size: 5rem;
   border-radius: 2rem;
+  padding: 3rem;
 }
 .sectionThree {
   position: relative;
   background-color: rgba(255,90,28,0.2);
   height: 82ch;
   width: 20ch;
-  font-size: 5rem;
   border-radius: 2rem;
+  margin-left: 4vw;
+  margin-bottom: 2vh;
+  padding: 3rem;
 }
