@@ -32,7 +32,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
   const torusNormalMap = new THREE.TextureLoader().load('normal_map_tile.jpg.opdownload');
   const material  = new  THREE.MeshStandardMaterial({
     color: 0xffff99,
-    map: torusNormalMap
+    //map: torusNormalMap
   });
   const torus = new THREE.Mesh(geometry,material); // laczenie ze soba figury oraz materialu
     scene.add(torus);
@@ -49,11 +49,9 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 
     // Orbit controler
     // const controls = new OrbitControls(camera, renderer.domElement); // mozliwosc obracania sie w przestrzenii
-  // another light
-    const anotherLight = THREE.ligh
-
+    
   function addStar() {
-    const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+    const geometry = new THREE.OctahedronGeometry(0.42,15);
     const material = new THREE.MeshStandardMaterial({color: 0xffffff});
     const ligthStar = new THREE.PointLight({color: 0xEA3})
       const star = new THREE.Mesh(geometry, material, ligthStar); // laczenie ze soba elementow geometry oraz material
@@ -77,7 +75,7 @@ const anotherSphere = new THREE.Mesh(
   new THREE.SphereGeometry(3,50,50),
   new THREE.MeshStandardMaterial({
     color: 0xffffff,
-    map: sphereNormalMap
+   // map: sphereNormalMap
   })
 )
   scene.add(anotherSphere);
@@ -91,7 +89,7 @@ const anotherSphere = new THREE.Mesh(
     new THREE.SphereGeometry(15, 32, 32),
     new THREE.MeshStandardMaterial({
       map: moonTexture,
-      map: moonMap
+     // map: moonMap
     })
   );
     scene.add(moon);
