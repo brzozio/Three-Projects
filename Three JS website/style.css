@@ -16,6 +16,7 @@ header {
   color: rgb(194, 179, 179);
   text-shadow: 2px 2px rgb(250, 232, 171);
   font-weight: 800;
+  opacity: 1;
 }
 .description {
   color: rgb(194, 179, 179);
@@ -27,6 +28,9 @@ body {
   margin: 20px;
   margin-top: 100vh;
   color: white;
+  font-size: 3rem;
+}
+main {
   font-size: 3rem;
 }
 .sectionOne {

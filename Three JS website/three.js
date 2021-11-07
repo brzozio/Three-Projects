@@ -2,8 +2,6 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-const headerTitle = document.querySelector("#headerMain"); // importowanie glownego naglowka
-
 const scene = new THREE.Scene();
 
 // kamera perspektywa, 75 - FOV, window/window - RATIO, 1000 - max dystans renderowania
@@ -108,14 +106,9 @@ const anotherSphere = new THREE.Mesh(
         camera.position.z = temp * -0.002;
         camera.position.x = temp * -0.0002;
         camera.position.y = temp * -0.0002;
-
-        // Zmiana opacity
-        headerTitle.fromTo({opacity: 1}, {opacity: 1 - 0.05});
-
     }
 
     document.body.onscroll = moveCamera; // odpalanie funckji moveCamera przy kazdym scrollu
-
 
 // ----------------- Animacje obiektow -----------------
 
